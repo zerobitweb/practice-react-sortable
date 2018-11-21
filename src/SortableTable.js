@@ -47,7 +47,7 @@ const SortableRow = SortableElement((items, index) => {
   //       });
   //     })}
   //   </tr>
-  console.log(index);
+  // console.log(index);
   return (
     <tr key={`tr-${items.idx}`}>
       {Object.keys(items.items).map((value, index) => {
