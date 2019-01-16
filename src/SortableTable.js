@@ -20,17 +20,20 @@ const rows = [
   { col01: 10, col02: "value1001", col03: "value1002" }
 ];
 
-const SortableTableBody = SortableContainer((items, idx) => {
+//const SortableTableBody = SortableContainer((items, idx) => {
+const SortableTableBody = SortableContainer((props, idx) => {
+  //console.log(props);
   // console.log("idx:" + JSON.stringify(idx));
   return (
     <tbody key={`tbody-${idx}`}>
-      {items.items.map((item, index) => {
+      {props.items.map((item, index) => {
         return (
           <SortableRow
             key={`sr-${index}`}
             items={item}
             idx={index}
             index={index}
+            disabled={props.disabled}
           />
         );
       })}
@@ -81,6 +84,7 @@ class SortableTable extends Component {
   };
 
   render() {
+    console.log(this.props.disabled);
     return (
       <Panel>
         <Panel.Heading style={{ align: "left" }}>
@@ -104,6 +108,7 @@ class SortableTable extends Component {
             <SortableTableBody
               items={this.state.items}
               onSortEnd={this.onSortEnd}
+              disabled={true}
             />
           </Table>
         </Panel.Body>
